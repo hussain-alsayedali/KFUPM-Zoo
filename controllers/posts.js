@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
+const User = require("../models/User")
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -77,4 +78,18 @@ module.exports = {
       res.redirect("/profile");
     }
   },
+  addFavorite : async(req, res) =>{
+    try{
+      let user = await User.findById({ _id: req.user.id });
+      console.log("the user is "  + user)
+      user.faviorities.push(req.params.postid)
+      await user.save()
+      console.log("added favs");
+      res.redirect("/profile");
+    }
+    catch(err){
+      res.redirect("/profile");
+      console.log(err)
+    }
+  }
 };

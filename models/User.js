@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
   faviorities : {
     type: [mongoose.Schema.Types.ObjectId],
     ref : "Post",
+    default: [],
   },
   profilePic :{
     type: String,

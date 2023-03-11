@@ -32,9 +32,13 @@
       <a class="btn btn-primary" href="/feed">Return to Feed</a>
     </div>
     <form action="/comment/createComment/<%= post.id %>?_method=POST" method = "POST">
-      <label for="">create comment</label>
-      <input type="text" name="content" id="">
-      <button type="submit"></button>
+      <label for="content"></label>
+      <input type="text" name="content" id="content">
+      <button class="btn btn-primary" type="submit">create comment</button>
+    </form>
+    <form action="/post/addFavorite/<%= post.id %>?_method=PUT" method = "POST">
+      <label for="favs"></label>
+      <button class="btn btn-primary" type="submit">add Favs</button>
     </form>
   </div>
   <div>
