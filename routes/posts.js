@@ -10,7 +10,8 @@ router.get("/:id", ensureAuth, postsController.getPost);
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.put("/likePost/:id", postsController.likePost);
-router.put("/addFavorite/:postid", postsController.addFavorite)
+router.put("/dislikePost/:id", postsController.dislikePost);
+router.put("/addFavorite/:postid", postsController.addRemoveFavorite)
 
 router.delete("/deletePost/:id", postsController.deletePost);
 

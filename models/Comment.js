@@ -13,7 +13,16 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post",
   },
-
+  likedBy : {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref : "user",
+    default: [],
+  },
+  dislikedBy : {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref : "user",
+    default: [],
+  },
   score: {
     type: Number,
     required: true,

@@ -25,10 +25,24 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  likedBy : {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref : "user",
+    default: [],
+  },
+  dislikedBy : {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref : "user",
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
+  // type: {
+  //   type: String,
+  //   required: true,
+  // }
 });
 
 module.exports = mongoose.model("Post", PostSchema);

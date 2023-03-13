@@ -51,23 +51,61 @@ module.exports = {
     }
   },
   likePost: async (req, res) => {
-    try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
+    try{
+      const post  = await Post.findById(req.params.id);
+      if(post.likedBy.includes(req.user.id)){
+        post.likedBy.remove(req.user.id)
+        post.score--;
+      }
+      else if(post.dislikedBy.includes(req.user.id)){
+        post.dislikedBy.remove(req.user.id)
+        post.likedBy.push(req.user.id)
+        post.score +=2; 
+      }
+      else{
+        post.likedBy.push(req.user.id)
+        post.score++;
+      }
+      await post.save()
       console.log("Likes +1");
       res.redirect(`/post/${req.params.id}`);
+    
+
+
     } catch (err) {
       console.log(err);
     }
   },
+  dislikePost : async (req, res) => {
+    console.log("get disliked HAHAHAHA")
+    try{
+      const post  = await Post.findById(req.params.id);
+      if(post.dislikedBy.includes(req.user.id)){
+        post.dislikedBy.remove(req.user.id)
+        post.score++;
+      }
+      else if(post.likedBy.includes(req.user.id)){
+        post.likedBy.remove(req.user.id)
+        post.dislikedBy.push(req.user.id)
+        post.score -=2
+      }
+      else{
+        post.dislikedBy.push(req.user.id)
+        post.score--
+      }
+      await post.save()
+      console.log("Likes +1");
+      res.redirect(`/post/${req.params.id}`);
+    }
+    catch(err){
+      console.log(err);
+    }
+    
+  },
   deletePost: async (req, res) => {
     try {
       // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
+      const post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
@@ -78,11 +116,17 @@ module.exports = {
       res.redirect("/profile");
     }
   },
-  addFavorite : async(req, res) =>{
+  addRemoveFavorite : async(req, res) =>{
     try{
-      let user = await User.findById({ _id: req.user.id });
+      const user = await User.findById({ _id: req.user.id });
       console.log("the user is "  + user)
-      user.faviorities.push(req.params.postid)
+      if(user.faviorities.includes(req.params.postid)){
+        user.faviorities.remove(req.params.postid)
+      }
+      else{
+        user.faviorities.push(req.params.postid)
+      }
+      
       await user.save()
       console.log("added favs");
       res.redirect("/profile");
