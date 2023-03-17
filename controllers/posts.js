@@ -43,6 +43,7 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         user: req.user.id,
+        type: req.body.type
       });
       console.log("Post has been added!");
       res.redirect("/profile");
