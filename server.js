@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
+const path = require("path");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments")
@@ -22,10 +23,12 @@ require("./config/passport")(passport);
 connectDB();
 
 //Using EJS for views
+
 app.set("view engine", "ejs");
+// app.set("views", path.join(__dirname,''));
 
 //Static Folder
-app.use(express.static("public"));
+app.use(express.static('public'))
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
