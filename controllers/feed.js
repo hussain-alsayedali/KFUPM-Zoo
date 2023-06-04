@@ -9,11 +9,25 @@ module.exports = {
           let typeQuery = {type: type}
           if(type == "all")
           typeQuery = {}
-          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).lean();
-          
-
-
+          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).lean();        
           res.render("feed.ejs", { posts: posts });
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      getFeedLimited: async (req, res) => {
+        try {
+
+          console.log(req.query.type)
+          const type = req.query.type
+          const oldPage = req.query.page
+          let typeQuery = {type: type}
+          if(type == "all")
+          typeQuery = {}
+          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * 10).limit(3).lean();
+          const totalPages =  Math.ceil(await Post.countDocuments({}) / 10)
+          console.log(totalPages)
+          res.render("feed.ejs", { posts: posts, totalPages: totalPages });
         } catch (err) {
           console.log(err);
         }

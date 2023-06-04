@@ -4,7 +4,7 @@ const feedController = require("../controllers/feed");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 
-router.get("/", feedController.getFeed);
+router.get("/", feedController.getFeedLimited);
 
 
 

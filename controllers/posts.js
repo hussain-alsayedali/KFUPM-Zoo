@@ -45,6 +45,9 @@ module.exports = {
         user: req.user.id,
         type: req.body.type
       });
+      const user = await User.findById(req.user.id)
+      user.totalScore += 10
+      await user.save() 
       console.log("Post has been added!");
       res.redirect("/profile");
     } catch (err) {
@@ -54,20 +57,27 @@ module.exports = {
   likePost: async (req, res) => {
     try{
       const post  = await Post.findById(req.params.id);
+      const user = await User.findById(post.user)
       if(post.likedBy.includes(req.user.id)){
         post.likedBy.remove(req.user.id)
         post.score--;
+        user.totalScore--;
       }
       else if(post.dislikedBy.includes(req.user.id)){
         post.dislikedBy.remove(req.user.id)
         post.likedBy.push(req.user.id)
         post.score +=2; 
+        user.totalScore +=2 ;
+
       }
       else{
         post.likedBy.push(req.user.id)
         post.score++;
+        user.totalScore++;
+
       }
       await post.save()
+      await user.save()
       console.log("Likes +1");
       res.redirect(`/post/${req.params.id}`);
     
