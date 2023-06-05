@@ -26,7 +26,7 @@ module.exports = {
           typeQuery = {}
           const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * 10).limit(3).lean();
           const totalPages =  Math.ceil(await Post.countDocuments({}) / 10)
-          console.log(totalPages)
+
           res.render("feed.ejs", { posts: posts, totalPages: totalPages });
         } catch (err) {
           console.log(err);

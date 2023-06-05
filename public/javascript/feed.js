@@ -18,9 +18,10 @@ console.log(scoreUrl.href)
 
 
 window.onload= () =>{
-    let meowDom = document.querySelector('.dude')
-    console.log(meowDom)
-    meowDom.innerHTML = "how"
+
+    // let meowDom = document.querySelector('.dude')
+    // console.log(meowDom)
+    // meowDom.innerHTML = "how"
 
     const asceDom = document.getElementById("descUrl")
     asceDom.href = asceUrl.href
@@ -32,4 +33,28 @@ window.onload= () =>{
     scoreDom.href = scoreUrl.href
 
 
+
+    // pagingation
+    const totalPages = document.getElementById("total-pages").innerText
+    const pagingationContiner = document.getElementById("pagination")
+    console.log(totalPages + "meow moew")
+    createPagination(pagingationContiner, 5)
+}
+
+function createPagination(container , totalPages){
+    for(i = 0 ; i < totalPages ; i++){
+        createPageButton(container, i)
+    }
+}
+function createPageButton(container, currentNumber){
+    const currentli = document.createElement("li")
+    const currenta = document.createElement("a")
+    
+    nextPageUrl = new URL(currentUrl)
+    nextPageUrl.searchParams.set("page", currentNumber)
+
+    currenta.href = nextPageUrl
+    currenta.innerText = currentNumber
+    currentli.appendChild(currenta)
+    container.appendChild(currentli)
 }

@@ -60,7 +60,21 @@
         </ul>
     </div>
   </div>  
+  <span id="total-pages" class="hidden"> <%= totalPages %></span>
   <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+  <div>
+    <!-- <%  { %>
+        <h2>I have a game state!</h2>
+        <script>
+           var clientGameState = <%= totalPages %>            
+        </script>
+   <% } %> -->
+   <span>this is pagination</span>
+    <ul id="pagination" class="flex justify-around">
+        <li>this is pagination</li>
+    </ul>
+</div>
+<!-- <%- include('partials/pagination') -%> -->
 <%- include('partials/footer') -%>
 </body>
 </html>
