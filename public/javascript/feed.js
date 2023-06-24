@@ -37,8 +37,8 @@ window.onload= () =>{
     // pagingation
     const totalPages = document.getElementById("total-pages").innerText
     const pagingationContiner = document.getElementById("pagination")
-    console.log(totalPages + "meow moew")
-    createPagination(pagingationContiner, 5)
+    // console.log(totalPages + "meow moew")
+    createPagination(pagingationContiner, totalPages)
 }
 
 function createPagination(container , totalPages){
