@@ -2,7 +2,7 @@
 
 <main class="">
   <div class="flex justify-center">
-    <section class="col-6 mt-5">
+    <section class="flex flex-col">
       <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
         <%= el.msg %>

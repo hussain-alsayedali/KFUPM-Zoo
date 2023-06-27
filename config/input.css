@@ -6,6 +6,6 @@
 
 @layer components {
     .btn-main {
-      @apply p-2 rounded  text-gray-600  hover:bg-gray-200  duration-300;
+      @apply p-2 rounded  text-gray-600  hover:bg-gray-200  duration-300  border-gray-300 border-2;
     }
   }
