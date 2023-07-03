@@ -9,11 +9,20 @@
 </head>
 <body>
   <%- include('partials/header') -%>
-  <div class="row justify-content-center mt-5">
-    <ul class="row list-unstyled">
+  <div class="flex justify-center flex-col items-center">
+    <div class="flex justify-between w-1/2 mt-8 border-b-2">
+      <h2>#</h2>
+      <h2>UserName</h2>
+      <h2>Score</h2>
+    </div>
+    <ul class="flex flex-col mt-8 w-1/2">
       <% for(var i=0; i<users.length; i++) {%>
-        <h1><%=users[i].userName %></h1>
-        <h1><%=users[i].totalScore %></h1>
+        <li class="flex justify-between border-b-2 border-blue-400  mt-2 p-2">
+          <h2><%=i+1%></h2>
+          <h2><%=users[i].userName %></h2>
+          <h2><%=users[i].totalScore %></h2>
+        </li>
+
 
 
       <% } %>
