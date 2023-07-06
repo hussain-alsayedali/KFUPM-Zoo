@@ -13,7 +13,14 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments")
 const feedRoutes = require("./routes/feeds")
+const cors = require('cors');
 
+
+
+//enablieng cors
+app.use(cors({
+  origin: '*'
+}));
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });

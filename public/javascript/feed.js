@@ -1,6 +1,6 @@
 const currentUrl = window.location.href
 
-console.log(currentUrl)
+// console.log(currentUrl)
 let scoreUrl = new URL(currentUrl)
 scoreUrl.searchParams.set("sort", "score")
 
@@ -10,36 +10,36 @@ descUrl.searchParams.set("sort", "desc")
 let asceUrl = new URL(currentUrl)
 asceUrl.searchParams.set("sort", "asce")
 
-console.log(scoreUrl.href)
+// console.log(scoreUrl.href)
 
 
 
 
 
 
-window.onload= () =>{
+// window.onload= () =>{
 
-    // let meowDom = document.querySelector('.dude')
-    // console.log(meowDom)
-    // meowDom.innerHTML = "how"
+//     // let meowDom = document.querySelector('.dude')
+//     // console.log(meowDom)
+//     // meowDom.innerHTML = "how"
 
-    const asceDom = document.getElementById("descUrl")
-    asceDom.href = asceUrl.href
+//     const asceDom = document.getElementById("descUrl")
+//     asceDom.href = asceUrl.href
 
-    const descDom = document.getElementById("asceUrl")
-    descDom.href = descUrl.href
+//     const descDom = document.getElementById("asceUrl")
+//     descDom.href = descUrl.href
 
-    const scoreDom = document.getElementById("scoreUrl")
-    scoreDom.href = scoreUrl.href
+//     const scoreDom = document.getElementById("scoreUrl")
+//     scoreDom.href = scoreUrl.href
 
 
 
-    // pagingation
-    const totalPages = document.getElementById("total-pages").innerText
-    const pagingationContiner = document.getElementById("pagination")
-    // console.log(totalPages + "meow moew")
-    createPagination(pagingationContiner, totalPages)
-}
+//     // pagingation
+//     const totalPages = document.getElementById("total-pages").innerText
+//     const pagingationContiner = document.getElementById("pagination")
+//     // console.log(totalPages + "meow moew")
+//     createPagination(pagingationContiner, totalPages)
+// }
 
 function createPagination(container , totalPages){
     for(i = 0 ; i < totalPages ; i++){

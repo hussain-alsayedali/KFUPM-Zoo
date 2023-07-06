@@ -25,13 +25,26 @@ module.exports = {
       const post = await Post.findById(req.params.id);
 
       const comments = await Comment.find({Post: req.params.postid}).populate("user").sort().lean()
-      for(const comment in comments){
-        console.log(comments[comment].createdAt.getDate())
-      }
+      // for(const comment in comments){
+      //   console.log(comments[comment].createdAt.getDate())
+      // }
 
       // console.log(comments)
 
       res.render("post.ejs", { post: post, comments : comments ,user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getPostComments: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+
+      const comments = await Comment.find({Post: req.params.postid}).populate("user").sort().lean()
+      const commentsJSON =  JSON.stringify(comments)
+
+      // console.log(comments)
+      res.json(commentsJSON) 
     } catch (err) {
       console.log(err);
     }
