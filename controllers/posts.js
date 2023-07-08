@@ -38,13 +38,13 @@ module.exports = {
   },
   getPostComments: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
+      // const post = await Post.findById(req.params.id);
 
       const comments = await Comment.find({Post: req.params.postid}).populate("user").sort().lean()
-      const commentsJSON =  JSON.stringify(comments)
+      // const commentsJSON =  JSON.stringify(comments)
 
       // console.log(comments)
-      res.json(commentsJSON) 
+      res.json(comments) 
     } catch (err) {
       console.log(err);
     }
