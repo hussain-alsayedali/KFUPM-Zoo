@@ -1,24 +1,34 @@
 async function fetchDates() {
     const currentUrl =  window.location.href
     const n = currentUrl.lastIndexOf('/')
-    // console.log(currentUrl.substring(n + 1))
+    
     const response = await fetch('/post/getPostComments/' + currentUrl.substring(n + 1));
     const jsonRes = await response.json();
     // waits until the request completes...
-    // console.log("these are the response",response);
 
-    console.log("these are the response",jsonRes[0]["createdAt"]);
-    console.log("these are the response");
+
+    const datesFormated = []
     for(let i = 0 ; i < jsonRes.length ; i++ ){
-        console.log(jsonRes[i]["createdAt"])
+        datesFormated.push(new Date(jsonRes[i]["createdAt"]).toDateString().substring(4))
     }
-    // for(const res in jsonRes){
-    //     console.log(jsonRes[res])
-    // }
+    return datesFormated
 }
+function putDates(dates){
+    const commentsSpans = document.getElementsByClassName("date-comment")
+    for(let i = 0 ; i < commentsSpans.length ; i++ ){
+        console.log(dates[i])
+        console.log(commentsSpans[i])
+        commentsSpans[i].innerHTML = dates[i]
+    }
+}
+async function putDatesDom(){
+    const dates  = await fetchDates()
+    putDates(dates)
+}
+
 window.onload = () =>{
-    fetchDates()
-    console.log("mn")
+    putDatesDom()
 }
+
 
 

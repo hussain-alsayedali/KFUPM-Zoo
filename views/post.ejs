@@ -72,15 +72,15 @@
     <div class="border-2 mt-4">
       
       <h2 class="mb-4">Comments : </h2>
-      <ul>
+      <ul id="all-comments">
         <% for(var i=0; i<comments.length; i++) {%>
-          <li class="border-b-2 w-2/3 rounded flex flex-col">
+          <li class="border-b-2 w-2/3 rounded flex flex-col ml-4 pl-2">
             <div class="flex">
               <span><%= comments[i].user.userName %></span>  
-              <span><%= comments[i].createdAt %></span>
+              <span class="date-comment ml-8"><%= comments[i].createdAt %></span>
             </div>
             
-            <span><%= comments[i].content %></span>
+            <span class="mt-4 pb-3"><%= comments[i].content %></span>
               
           </li>
         <% } %>
