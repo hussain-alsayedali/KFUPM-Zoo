@@ -1,4 +1,4 @@
-const currentUrl = window.location.href
+var currentUrl = window.location.href
 
 // console.log(currentUrl)
 let scoreUrl = new URL(currentUrl)
@@ -37,7 +37,7 @@ window.onload= () =>{
     // pagingation
     const totalPages = document.getElementById("total-pages").innerText
     const pagingationContiner = document.getElementById("pagination")
-    console.log(totalPages + "meow moew")
+    // console.log(totalPages + "meow moew")
     createPagination(pagingationContiner, totalPages)
 }
 
@@ -49,12 +49,19 @@ function createPagination(container , totalPages){
 function createPageButton(container, currentNumber){
     const currentli = document.createElement("li")
     const currenta = document.createElement("a")
-    
     nextPageUrl = new URL(currentUrl)
     nextPageUrl.searchParams.set("page", currentNumber)
 
     currenta.href = nextPageUrl
+
     currenta.innerText = currentNumber
+    currenta.classList.add("btn-main")
+
+    let currentParams = new URL(currentUrl).searchParams;
+    let currentPage = parseInt(currentParams.get("page"))
+    console.log(currentPage)
+    if(currentNumber === currentPage ) 
+        currenta.classList.add("text-red-400")
     currentli.appendChild(currenta)
     container.appendChild(currentli)
 }
