@@ -5,7 +5,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 
 router.get("/", feedController.getFeedLimited);
-
+router.get("/feedJson", feedController.getFeedLimitedJson)
 
 
 module.exports = router;
