@@ -39,6 +39,7 @@ window.onload= () =>{
     const pagingationContiner = document.getElementById("pagination")
     // console.log(totalPages + "meow moew")
     createPagination(pagingationContiner, totalPages)
+    addColorToCurrentType()
 }
 
 function createPagination(container , totalPages){
@@ -64,4 +65,18 @@ function createPageButton(container, currentNumber){
         currenta.classList.add("text-red-400")
     currentli.appendChild(currenta)
     container.appendChild(currentli)
+}
+function addColorToCurrentType(){
+    nextPageUrl = new URL(currentUrl)
+    let currentParams = new URL(currentUrl).searchParams;
+    let currentType = currentParams.get("type")
+    let currentContainer
+    if(currentType == "fox")       currentContainer = document.getElementById("fox-container")
+    else if(currentType == "duck") currentContainer = document.getElementById("duck-container")
+    else if(currentType == "bird") currentContainer = document.getElementById("bird-container")
+    else if(currentType == "oria") currentContainer = document.getElementById("oria-container")
+    else if(currentType == "all")  currentContainer = document.getElementById("all-container")
+
+    currentContainer.classList.add("text-cyan-600")
+    console.log(currentContainer)
 }
