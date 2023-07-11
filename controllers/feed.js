@@ -32,5 +32,17 @@ module.exports = {
           console.log(err);
         }
       },
+      getFeedLimitedJson: async(req , res) =>{
+        try{
+          const pagesConstant = 6
+          const type = req.query.type
+          const oldPage = req.query.page
+          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
+          res.json(posts)
+        }
+        catch(err){
+          console.log(err)
+        }
+      },
 
 }
