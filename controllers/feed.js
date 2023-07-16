@@ -38,7 +38,10 @@ module.exports = {
           const type = req.query.type
           const oldPage = req.query.page
           const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
-          res.json(posts)
+          const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
+          
+          const response = { posts: posts, totalPages: totalPages }
+          res.json(response)
         }
         catch(err){
           console.log(err)

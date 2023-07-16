@@ -1,5 +1,6 @@
 var currentUrl = window.location.href
 
+// console.log(currentUUU.searchParams.get("page"))
 // console.log(currentUrl)
 let scoreUrl = new URL(currentUrl)
 scoreUrl.searchParams.set("sort", "score")
@@ -40,6 +41,7 @@ window.onload= () =>{
     // console.log(totalPages + "meow moew")
     createPagination(pagingationContiner, totalPages)
     addColorToCurrentType()
+    fetchDates()
 }
 
 function createPagination(container , totalPages){
@@ -79,4 +81,18 @@ function addColorToCurrentType(){
 
     currentContainer.classList.add("text-cyan-600")
     console.log(currentContainer)
+}
+
+async function fetchDates(){
+    const currentLink =new URL(currentUrl)
+    const currentPageNum = currentLink.searchParams.get("page")
+    const currentSort = currentLink.searchParams.get("sort")
+    const currentType = currentLink.searchParams.get("type")
+
+    const feedUrl = new URL('feed/getFeedLimitedJson/')
+    feedUrl.set("page" , currentPageNum )
+    feedUrl.set("sort" , currentSort)
+    feedUrl.set("type" , currentType)
+    console.log(feedUrl)
+    // const response = await fetch('/feed/getFeedLimitedJson/' + currentUrl.substring(n + 1));
 }
