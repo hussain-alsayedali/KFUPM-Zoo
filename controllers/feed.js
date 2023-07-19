@@ -18,12 +18,13 @@ module.exports = {
       getFeedLimited: async (req, res) => {
         try {
           const pagesConstant = 6
-          console.log(req.query.type)
+          
           const type = req.query.type
           const oldPage = req.query.page
           let typeQuery = {type: type}
           if(type == "all")
           typeQuery = {}
+
           const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
           const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
 
@@ -37,6 +38,11 @@ module.exports = {
           const pagesConstant = 6
           const type = req.query.type
           const oldPage = req.query.page
+
+          let typeQuery = {type: type}
+          if(type == "all")
+            typeQuery = {}
+          
           const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
           const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
           

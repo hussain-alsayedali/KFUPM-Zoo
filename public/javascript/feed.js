@@ -1,7 +1,5 @@
 var currentUrl = window.location.href
 
-// console.log(currentUUU.searchParams.get("page"))
-// console.log(currentUrl)
 let scoreUrl = new URL(currentUrl)
 scoreUrl.searchParams.set("sort", "score")
 
@@ -11,7 +9,7 @@ descUrl.searchParams.set("sort", "desc")
 let asceUrl = new URL(currentUrl)
 asceUrl.searchParams.set("sort", "asce")
 
-// console.log(scoreUrl.href)
+
 
 
 
@@ -20,9 +18,7 @@ asceUrl.searchParams.set("sort", "asce")
 
 window.onload= () =>{
 
-    // let meowDom = document.querySelector('.dude')
-    // console.log(meowDom)
-    // meowDom.innerHTML = "how"
+
 
     const asceDom = document.getElementById("descUrl")
     asceDom.href = asceUrl.href
@@ -38,10 +34,10 @@ window.onload= () =>{
     // pagingation
     const totalPages = document.getElementById("total-pages").innerText
     const pagingationContiner = document.getElementById("pagination")
-    // console.log(totalPages + "meow moew")
+
     createPagination(pagingationContiner, totalPages)
     addColorToCurrentType()
-    fetchDates()
+    putDatesDom()
 }
 
 function createPagination(container , totalPages){
@@ -62,7 +58,7 @@ function createPageButton(container, currentNumber){
 
     let currentParams = new URL(currentUrl).searchParams;
     let currentPage = parseInt(currentParams.get("page"))
-    console.log(currentPage)
+  
     if(currentNumber === currentPage ) 
         currenta.classList.add("text-red-400")
     currentli.appendChild(currenta)
@@ -80,19 +76,51 @@ function addColorToCurrentType(){
     else if(currentType == "all")  currentContainer = document.getElementById("all-container")
 
     currentContainer.classList.add("text-cyan-600")
-    console.log(currentContainer)
+    
 }
 
 async function fetchDates(){
+    const feedUrlString = getUrlString()
+    console.log(feedUrlString)
+    const response = await fetch(feedUrlString);
+    const jsonRes = await response.json()
+
+
+    let datesFormated =  []
+    for(let i = 0 ; i < jsonRes["posts"].length ; i++ ){
+        // datesFormated.push(i)
+        datesFormated.push(new Date(jsonRes["posts"][i]["createdAt"]).toDateString().substring(4))
+    }
+
+    return datesFormated
+}
+
+function getUrlString(){
     const currentLink =new URL(currentUrl)
     const currentPageNum = currentLink.searchParams.get("page")
     const currentSort = currentLink.searchParams.get("sort")
     const currentType = currentLink.searchParams.get("type")
 
-    const feedUrl = new URL('feed/getFeedLimitedJson/')
-    feedUrl.set("page" , currentPageNum )
-    feedUrl.set("sort" , currentSort)
-    feedUrl.set("type" , currentType)
-    console.log(feedUrl)
-    // const response = await fetch('/feed/getFeedLimitedJson/' + currentUrl.substring(n + 1));
+    console.log( currentPageNum , currentSort , currentType )
+    let currentSortString = ""
+    if(currentSort != null){
+        currentSortString = "&sort=" + currentSort 
+    } 
+    const feedUrlString = 'feed/feedJson'+ "?" + "type=" +currentType + "&page=" + currentPageNum + currentSortString
+    console.log(feedUrlString)
+    return feedUrlString;
+}
+
+function putDates(dates){
+
+    const datesContainers = document.getElementsByClassName("date-picture")
+
+    for(let i = 0 ; i < datesContainers.length ; i++  ){
+        datesContainers[i].innerHTML = dates[i]
+    }
+}
+
+async function putDatesDom(){
+    const datesObj = await fetchDates()
+    putDates(datesObj)
 }
