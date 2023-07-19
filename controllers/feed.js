@@ -21,6 +21,8 @@ module.exports = {
           
           const type = req.query.type
           const oldPage = req.query.page
+          const sort = req.query.sort
+          console.log(sort)
           let typeQuery = {type: type}
           if(type == "all")
           typeQuery = {}
@@ -38,6 +40,7 @@ module.exports = {
           const pagesConstant = 6
           const type = req.query.type
           const oldPage = req.query.page
+          const sort = req.query.sort
 
           let typeQuery = {type: type}
           if(type == "all")

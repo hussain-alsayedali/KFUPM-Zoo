@@ -1,13 +1,16 @@
 var currentUrl = window.location.href
 
-let scoreUrl = new URL(currentUrl)
-scoreUrl.searchParams.set("sort", "score")
+let descScoreUrl = new URL(currentUrl)
+descScoreUrl.searchParams.set("sort", "score_desc")
 
-let descUrl = new URL(currentUrl)
-descUrl.searchParams.set("sort", "desc")
+let asceScoreUrl = new URL(currentUrl)
+asceScoreUrl.searchParams.set("sort", "score_asce")
 
-let asceUrl = new URL(currentUrl)
-asceUrl.searchParams.set("sort", "asce")
+let descCreatedatUrl = new URL(currentUrl)
+descCreatedatUrl.searchParams.set("sort", "createdAt_desc")
+
+let asceCreatedatUrl = new URL(currentUrl)
+asceCreatedatUrl.searchParams.set("sort", "createdAt_asce")
 
 
 
@@ -20,16 +23,17 @@ window.onload= () =>{
 
 
 
-    const asceDom = document.getElementById("descUrl")
-    asceDom.href = asceUrl.href
+    const asceDom = document.getElementById("desc-createdat-url")
+    asceDom.href = asceCreatedatUrl.href
 
-    const descDom = document.getElementById("asceUrl")
-    descDom.href = descUrl.href
+    const descDom = document.getElementById("asce-createdat-url")
+    descDom.href = descCreatedatUrl.href
 
-    const scoreDom = document.getElementById("scoreUrl")
-    scoreDom.href = scoreUrl.href
+    const acseScoreDom = document.getElementById("asce-score-url")
+    acseScoreDom.href = asceScoreUrl.href
 
-
+    const descScoreDom = document.getElementById("desc-score-url")
+    descScoreDom.href = descScoreUrl.href
 
     // pagingation
     const totalPages = document.getElementById("total-pages").innerText
@@ -81,7 +85,7 @@ function addColorToCurrentType(){
 
 async function fetchDates(){
     const feedUrlString = getUrlString()
-    console.log(feedUrlString)
+    
     const response = await fetch(feedUrlString);
     const jsonRes = await response.json()
 
@@ -101,13 +105,13 @@ function getUrlString(){
     const currentSort = currentLink.searchParams.get("sort")
     const currentType = currentLink.searchParams.get("type")
 
-    console.log( currentPageNum , currentSort , currentType )
+    
     let currentSortString = ""
     if(currentSort != null){
         currentSortString = "&sort=" + currentSort 
     } 
     const feedUrlString = 'feed/feedJson'+ "?" + "type=" +currentType + "&page=" + currentPageNum + currentSortString
-    console.log(feedUrlString)
+    
     return feedUrlString;
 }
 
