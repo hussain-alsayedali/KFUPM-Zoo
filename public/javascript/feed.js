@@ -2,15 +2,19 @@ var currentUrl = window.location.href
 
 let descScoreUrl = new URL(currentUrl)
 descScoreUrl.searchParams.set("sort", "score_desc")
+descScoreUrl.searchParams.set("page", "0")
 
 let asceScoreUrl = new URL(currentUrl)
-asceScoreUrl.searchParams.set("sort", "score_asce")
+asceScoreUrl.searchParams.set("sort", "score_asc")
+asceScoreUrl.searchParams.set("page", "0")
 
 let descCreatedatUrl = new URL(currentUrl)
 descCreatedatUrl.searchParams.set("sort", "createdAt_desc")
+descCreatedatUrl.searchParams.set("page", "0")
 
 let asceCreatedatUrl = new URL(currentUrl)
-asceCreatedatUrl.searchParams.set("sort", "createdAt_asce")
+asceCreatedatUrl.searchParams.set("sort", "createdAt_asc")
+asceCreatedatUrl.searchParams.set("page", "0")
 
 
 
@@ -22,11 +26,11 @@ asceCreatedatUrl.searchParams.set("sort", "createdAt_asce")
 window.onload= () =>{
 
 
-
-    const asceDom = document.getElementById("desc-createdat-url")
+    
+    const asceDom = document.getElementById("asce-createdat-url")
     asceDom.href = asceCreatedatUrl.href
 
-    const descDom = document.getElementById("asce-createdat-url")
+    const descDom = document.getElementById("desc-createdat-url")
     descDom.href = descCreatedatUrl.href
 
     const acseScoreDom = document.getElementById("asce-score-url")

@@ -22,12 +22,18 @@ module.exports = {
           const type = req.query.type
           const oldPage = req.query.page
           const sort = req.query.sort
-          console.log(sort)
+
+          let sortType = sort.split("_")[0] 
+          let sortWay  = sort.split("_")[1] 
+
+          let sortQuery = {}
+          sortQuery[sortType] = sortWay
+          console.log(sortQuery)
           let typeQuery = {type: type}
           if(type == "all")
           typeQuery = {}
-
-          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
+          // { createdAt: "desc" }
+          const posts = await Post.find(typeQuery).sort(sortQuery).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
           const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
 
           res.render("feed.ejs", { posts: posts, totalPages: totalPages });
@@ -42,11 +48,17 @@ module.exports = {
           const oldPage = req.query.page
           const sort = req.query.sort
 
+          let sortType = sort.split("_")[0] 
+          let sortWay  = sort.split("_")[1] 
+
+          let sortQuery = {}
+          sortQuery[sortType] = sortWay
+
           let typeQuery = {type: type}
           if(type == "all")
             typeQuery = {}
           
-          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
+          const posts = await Post.find(typeQuery).sort(sortQuery).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
           const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
           
           const response = { posts: posts, totalPages: totalPages }
