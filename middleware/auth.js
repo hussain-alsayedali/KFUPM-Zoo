@@ -3,7 +3,8 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     } else {
-      res.redirect("/");
+      req.flash('errors', 'login to access the another page');
+      res.redirect("/feed?type=all&page=0&sort=createdAt_desc");
     }
   },
   ensureGuest: function (req, res, next) {

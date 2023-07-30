@@ -9,7 +9,14 @@
 </head>
 <body>
   <%- include('partials/header') -%>
-  
+  <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+    <div class="flex justify-center">
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center w-1/2 m-8">
+        <%= el %>
+      </div>
+      <% }) %> <% } %> 
+    </div>
+
   <div class="">
     <ul class="inline-flex items-center justify-center w-full p-5 " > 
 
