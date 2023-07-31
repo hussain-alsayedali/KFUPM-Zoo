@@ -9,7 +9,8 @@ module.exports = {
           let typeQuery = {type: type}
           if(type == "all")
           typeQuery = {}
-          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).lean();        
+          const posts = await Post.find(typeQuery).sort({ createdAt: "desc" }).lean();  
+                
           res.render("feed.ejs", { posts: posts });
         } catch (err) {
           console.log(err);
@@ -35,7 +36,7 @@ module.exports = {
           // { createdAt: "desc" }
           const posts = await Post.find(typeQuery).sort(sortQuery).skip(oldPage * pagesConstant).limit(pagesConstant).lean();
           const totalPages =  Math.ceil(await Post.countDocuments(typeQuery) / pagesConstant)
-
+          // console.log(res)
           res.render("feed.ejs", { posts: posts, totalPages: totalPages });
         } catch (err) {
           console.log(err);
