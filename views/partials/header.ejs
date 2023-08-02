@@ -39,8 +39,14 @@
               <!-- <li class="p-2 rounded  text-gray-600  hover:bg-gray-200  duration-300">/li> -->
           </ul>
       </nav>
+
       <ul class="flex mr-2 p-2">
-        <li class="btn-main"><a href="/">Login</a></li>
+        <% if(typeof(user) == "undefined"){ %>
+          <li class="btn-main"><a href="/">Login</a></li>
+        <% } else{ %>
+        <li class="btn-main"><a href="/profile">meow</a></li>
+        <% } %>
+
       </ul>
   </header>
   </body>
