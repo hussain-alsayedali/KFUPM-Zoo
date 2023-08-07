@@ -1,5 +1,6 @@
 module.exports = {
   ensureAuth: function (req, res, next) {
+    res.locals.login = req.isAuthenticated();
     if (req.isAuthenticated()) {
       return next();
     } else {
@@ -8,10 +9,15 @@ module.exports = {
     }
   },
   ensureGuest: function (req, res, next) {
+    
     if (!req.isAuthenticated()) {
       return next();
     } else {
       res.redirect("/dashboard");
     }
   },
+  isAuthed: function (req, res, next) {
+    res.locals.login = req.isAuthenticated();
+    next();
+  }
 };

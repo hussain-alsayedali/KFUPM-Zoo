@@ -41,11 +41,12 @@
       </nav>
 
       <ul class="flex mr-2 p-2">
-        <% if(typeof(user) == "undefined"){ %>
-          <li class="btn-main"><a href="/">Login</a></li>
-        <% } else{ %>
-        <li class="btn-main"><a href="/profile">meow</a></li>
-        <% } %>
+      <% if (login){ %>
+        <li class="btn-main"><a href="/logout" class="">Logout</a></li>
+        <% }else{ %>
+        <li class="btn-main"><a href="/">Login</a></li>
+        <% }%>
+
 
       </ul>
   </header>
