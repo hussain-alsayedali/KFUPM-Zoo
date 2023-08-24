@@ -62,10 +62,7 @@
         <p>Caption : <%= post.caption %></p>
       </div>
   
-      <!-- <form action="/post/addRemoveFavorite/<%= post.id %>?_method=PUT" method = "POST">
-        <label for="favs"></label>
-        <button class="btn btn-primary" type="submit">add Favs</button>
-      </form> -->
+
     </div>
     <div class="mt-4">
       <form action="/comment/createComment/<%= post.id %>?_method=POST" method = "POST">
