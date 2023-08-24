@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Media for animals in KFUPM",
   "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "nodemon": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx tailwindcss -i ./config/input.css -o ./public/css/style.css",
     "css": "npx tailwindcss -i ./config/input.css -o ./public/css/style.css && nodemon server.js"
