@@ -10,7 +10,7 @@
     "start": "node server.js",
     "nodemon": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx tailwindcss -i ./config/input.css -o ./public/css/style.css",
+    "build:css": "npx tailwindcss -i ./config/input.css -o ./public/css/style.css --minify",
     "css": "npx tailwindcss -i ./config/input.css -o ./public/css/style.css && nodemon server.js"
   },
   "author": "",
