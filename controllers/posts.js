@@ -40,7 +40,7 @@ module.exports = {
     try {
       // const post = await Post.findById(req.params.id);
 
-      const comments = await Comment.find({Post: req.params.postid}).populate("user").sort().lean()
+      const comments = await Comment.find({Post: req.params.id}).populate("user").sort().lean()
       // const commentsJSON =  JSON.stringify(comments)
 
       // console.log(comments)
