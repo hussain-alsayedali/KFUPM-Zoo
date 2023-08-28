@@ -24,13 +24,13 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.id);
 
-      const comments = await Comment.find({Post: req.params.postid}).populate("user").sort().lean()
+      const comments = await Comment.find({post: req.params.id}).populate("user").sort().lean()
       // for(const comment in comments){
       //   console.log(comments[comment].createdAt.getDate())
       // }
 
       // console.log(comments)
-
+      // console.log(res)
       res.render("post.ejs", { post: post, comments : comments ,user: req.user });
     } catch (err) {
       console.log(err);
@@ -39,8 +39,8 @@ module.exports = {
   getPostComments: async (req, res) => {
     try {
       // const post = await Post.findById(req.params.id);
-
-      const comments = await Comment.find({Post: req.params.id}).populate("user").sort().lean()
+      console.log(req.params.id)
+      const comments = await Comment.find({post: req.params.id}).populate("user").sort().lean()
       // const commentsJSON =  JSON.stringify(comments)
 
       // console.log(comments)
@@ -74,6 +74,7 @@ module.exports = {
   },
   likePost: async (req, res) => {
     try{
+      
       const post  = await Post.findById(req.params.id);
       const user = await User.findById(post.user)
       if(post.likedBy.includes(req.user.id)){
