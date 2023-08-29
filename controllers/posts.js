@@ -111,29 +111,23 @@ module.exports = {
       console.log(req.user.id)
       const post  = await Post.findById(req.params.id);
       const orignalPoster = post.user
-
-      if(req.user.id == "63fa50b8e985a9187cfcae52" || req.user.id == orignalPoster){
-        if(post.dislikedBy.includes(req.user.id)){
-          post.dislikedBy.remove(req.user.id)
-          post.score++;
-        }
-        else if(post.likedBy.includes(req.user.id)){
-          post.likedBy.remove(req.user.id)
-          post.dislikedBy.push(req.user.id)
-          post.score -=2
-        }
-        else{
-          post.dislikedBy.push(req.user.id)
-          post.score--
-        }
-        await post.save()
-        console.log("Likes +1");
-        res.redirect(`/post/${req.params.id}`);
+      if(post.dislikedBy.includes(req.user.id)){
+        post.dislikedBy.remove(req.user.id)
+        post.score++;
+      }
+      else if(post.likedBy.includes(req.user.id)){
+        post.likedBy.remove(req.user.id)
+        post.dislikedBy.push(req.user.id)
+        post.score -=2
       }
       else{
-      console.log("not today");
-
+        post.dislikedBy.push(req.user.id)
+        post.score--
       }
+      await post.save()
+      console.log("Likes +1");
+      res.redirect(`/post/${req.params.id}`);
+
     }
     catch(err){
       console.log(err);
@@ -142,8 +136,8 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
-      
-      // Find post by id
+      if(req.user.id == "63fa50b8e985a9187cfcae52" || req.user.id == orignalPoster){
+              // Find post by id
       const post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
@@ -151,6 +145,10 @@ module.exports = {
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/profile");
+      }
+      else{
+        console.log("not today");
+      }
     } catch (err) {
       res.redirect("/profile");
     }
