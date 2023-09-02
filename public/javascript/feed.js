@@ -63,7 +63,10 @@ function createPageButton(container, currentNumber){
 
     currenta.innerText = currentNumber
     currenta.classList.add("btn-main")
-    currentli.classList.add("mt-2" , "ml-2")
+    if(currentNumber != 0)
+        currentli.classList.add("ml-2")
+    currentli.classList.add("mt-2")
+    
 
     let currentParams = new URL(currentUrl).searchParams;
     let currentPage = parseInt(currentParams.get("page"))

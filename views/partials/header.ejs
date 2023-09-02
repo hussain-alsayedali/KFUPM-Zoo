@@ -14,10 +14,10 @@
   </head>
   <body>
 
-    <header class="w-screen py-2 flex justify-around border border-black lg:items-center">
+    <header class="w-screen py-2 flex justify-around border border-black lg:items-center align-middle">
       <div class="ml-2 p-2  ">
           <h1 class="text-2xl  border duration-300 rounded z-20">
-            <a href="/profile" class=" hover:text-green-500 z-30">KFUPM Zoo</a>
+            <a href="/profile" class=" hover:text-green-500 z-30 p-1">KFUPM Zoo</a>
           </h1>
       </div>
 
@@ -27,14 +27,14 @@
               <li class="btn-main"><a href="/createPost">CreatePost</a></li>
               <li class="p-2 rounded  text-gray-600  hover:bg-gray-200  duration-300 ml-2"><a href="/hallOfFame">Hall of fame</a></li>    
           </ul>
-          <div class="lg:hidden">
+          <div class="lg:hidden flex align-middle">
             <button class="navbar-burger btn-main p-1 ">
               <i class="fa-solid fa-bars"></i>
             </button>
         </div>
       </nav>
 
-      <ul class="flex mr-2 p-2">
+      <ul class="flex mr-2 p-2 max-lg:hidden">
       <% if (login){ %>
         <li class="btn-main"><a href="/logout" class="">Logout</a></li>
         <% }else{ %>
