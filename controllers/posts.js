@@ -110,7 +110,7 @@ module.exports = {
     try{
       console.log(req.user.id)
       const post  = await Post.findById(req.params.id);
-      const orignalPoster = post.user
+      
       if(post.dislikedBy.includes(req.user.id)){
         post.dislikedBy.remove(req.user.id)
         post.score++;
@@ -136,6 +136,7 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
+      const orignalPoster = post.user
       if(req.user.id == "63fa50b8e985a9187cfcae52" || req.user.id == orignalPoster){
               // Find post by id
       const post = await Post.findById({ _id: req.params.id });

@@ -5,11 +5,11 @@ module.exports = {
   "./public/javascript/*"
   ]
   ,
-  // safelist: [
-  //   {
-  //     pattern: /./, // the "." means "everything"
-  //   },
-  // ],
+  safelist: [
+    {
+      pattern: /./, // the "." means "everything"
+    },
+  ],
 
   theme: {
     extend: {},
