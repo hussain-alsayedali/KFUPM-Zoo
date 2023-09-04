@@ -2,7 +2,7 @@ const User = require("../models/User")
 
 module.exports = {
   getIndex: (req, res) => {
-    res.render("index");
+    res.render("index.ejs");
   },
   getCreatePostPage: (req,res) =>{
     res.render("createPost.ejs");
