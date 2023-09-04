@@ -7,9 +7,10 @@
   <title>KFUPM-Zoo</title>
  
 
-  <script src="/javascript/feed.js"></script> 
+  
 </head>
 <body class="">
+
   <%- include('partials/header') -%>
   <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
     <div class="flex justify-center">
@@ -19,31 +20,32 @@
       <% }) %> <% } %> 
     </div>
 
+
   <div class="max-lg:overflow-x-hidden">
     <ul class="inline-flex items-center justify-center w-full p-5 max-lg:flex-wrap" > 
 
       <li id="fox-container" class="m-2">     
-        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300" href="/feed?type=fox&page=0&sort=desc">
+        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300" href="/feed?type=fox&page=0&sort=createdAt_desc">
           <i class="fa-solid fa-paw block text-center text-3xl"></i>
           <span class="text-center mt-2 font-semibold text-lg" >Fox</span>
         </a>
       </li>
 
       <li id="oria-container" class="m-2">
-        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300 cursor-not-allowed" href="/feed?type=oria&page=0&sort=desc" onclick="javascript:return false;">
+        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300 cursor-not-allowed" href="/feed?type=oria&page=0&sort=createdAt_desc" onclick="javascript:return false;">
           <i class="fa-solid fa-children block text-center text-3xl"></i>
           <span class="text-center mt-2 font-semibold text-lg" >Oria</span>
           <span class="text-gray-500 text-sm block p-2">(locked due to laws)</span>
         </a>  
       </li>
       <li id="duck-container" class="m-2"> 
-        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300 " href="/feed?type=duck&page=0&sort=desc">
+        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300 " href="/feed?type=duck&page=0&sort=createdAt_desc">
           <i class="fa-solid fa-feather block text-center text-3xl"></i>
           <span class="text-center mt-2 font-semibold text-lg ">Duck</a>
         </a>  
       </li>
       <li id="bird-container" class="m-2">
-        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300" href="/feed?type=bird&page=0&sort=desc">
+        <a class="border  w-24 h-32 flex justify-center flex-col border-gray-400 rounded hover:text-green-600 duration-300" href="/feed?type=bird&page=0&sort=createdAt_desc">
           <i class="fa-solid fa-dove block text-center text-3xl"></i>
           <span class = "text-center mt-2 font-semibold text-lg" >Bird</a>
         </a>
@@ -65,16 +67,16 @@
     <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li>
-            <a href="#" id="desc-createdat-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">created at: desc</a>
+            <a href="" id="desc-createdat-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white desc-createdat-url">created at: desc</a>
           </li>
           <li>
-            <a href="#" id="asce-createdat-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">created at : asce</a>
+            <a href="" id="asce-createdat-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white asce-createdat-url">created at : asce</a>
           </li>
           <li>
-            <a href="#" id="asce-score-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Score : asce</a>
+            <a href="" id="asce-score-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white asce-score-url">Score : asce</a>
           </li>
           <li>
-            <a href="#" id="desc-score-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Score : desc</a>
+            <a href="" id="desc-score-url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white desc-score-url">Score : desc</a>
           </li>
         </ul>
     </div>
@@ -107,7 +109,8 @@
 
     </ul>
 </div>
-
-
-</body>
+  
+<script src="/javascript/feed.js"></script> 
+  
+  </body>
 </html>

@@ -1,4 +1,4 @@
-var currentUrl = window.location.href
+let currentUrl = window.location.href
 
 let descScoreUrl = new URL(currentUrl)
 descScoreUrl.searchParams.set("sort", "score_desc")
@@ -23,12 +23,14 @@ asceCreatedatUrl.searchParams.set("page", "0")
 
 
 
-window.onload= () =>{
+document.addEventListener("DOMContentLoaded", (event) =>{
 
 
-    
+    // console.log("meow")    
     const asceDom = document.getElementById("asce-createdat-url")
     asceDom.href = asceCreatedatUrl.href
+    console.log(asceDom.href)
+
 
     const descDom = document.getElementById("desc-createdat-url")
     descDom.href = descCreatedatUrl.href
@@ -46,7 +48,7 @@ window.onload= () =>{
     createPagination(pagingationContiner, totalPages)
     addColorToCurrentType()
     putDatesDom()
-}
+})
 
 function createPagination(container , totalPages){
     for(i = 0 ; i < totalPages ; i++){

@@ -10,6 +10,8 @@
 
     <script src="https://kit.fontawesome.com/c1e1c65d20.js" crossorigin="anonymous"></script>
     <link href="/css/style.css" rel="stylesheet"  />
+
+
     
   </head>
   <body>
@@ -27,8 +29,9 @@
               <li class="btn-main"><a href="/createPost">CreatePost</a></li>
               <li class="p-2 rounded  text-gray-600  hover:bg-gray-200  duration-300 ml-2"><a href="/hallOfFame">Hall of fame</a></li>    
           </ul>
+
           <div class="lg:hidden flex align-middle">
-            <button class="navbar-burger btn-main p-1 ">
+            <button id="burger-button" class="navbar-burger btn-main p-1 ">
               <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -40,9 +43,20 @@
         <% }else{ %>
         <li class="btn-main"><a href="/">Login</a></li>
         <% }%>
+      </ul>
 
-
+      <ul id="burger-menu-content" class="hidden flex flex-col h-72 justify-center absolute bg-slate-800 rounded border border-cyan-200 duration-300 transition top-20 w-full items-stretch">
+        <li class="m-2"><a class="btn-main w-full block text-white  " href="/feed?type=all&page=0&sort=createdAt_desc">Feed</a></li>
+        <li class="m-2"><a class="btn-main w-full block text-white" href="/createPost">CreatePost</a></li>
+        <li class="m-2"><a class="btn-main w-full block text-white" href="/hallOfFame">Hall of fame</a></li>
+        <% if (login){ %>
+          <li class="m-2"><a class="btn-main w-full block text-white" href="/logout" class="">Logout</a></li>
+          <% }else{ %>
+          <li class="m-2"><a class="btn-main w-full block text-white" href="/">Login</a></li>
+          <% }%>
       </ul>
   </header>
+  <script src="/javascript/header.js"></script> 
+
   </body>
 </html>
