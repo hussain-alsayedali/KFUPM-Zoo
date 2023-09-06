@@ -106,9 +106,10 @@ module.exports = {
     }
   },
   dislikePost : async (req, res) => {
-    console.log("get disliked HAHAHAHA")
+
+
     try{
-      console.log(req.user.id)
+      
       const post  = await Post.findById(req.params.id);
       
       if(post.dislikedBy.includes(req.user.id)){
@@ -136,10 +137,11 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
+      const post = await Post.findById({ _id: req.params.id });
       const orignalPoster = post.user
       if(req.user.id == "63fa50b8e985a9187cfcae52" || req.user.id == orignalPoster){
+        console.log("delete accepted")
               // Find post by id
-      const post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
