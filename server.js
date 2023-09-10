@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+var bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
@@ -40,9 +41,10 @@ app.set("view engine", "ejs");
 app.use(express.static('public'))
 
 //Body Parsing
-app.use(express.urlencoded({ extended: true ,limit: '50mb'}));
-app.use(express.json({limit: '50mb'}));
-
+// app.use(express.urlencoded({ extended: true ,limit: '50mb'}));
+// app.use(express.json({limit: '50mb'}));
+app.use(bodyParser.json({limit:'50mb'})); 
+app.use(bodyParser.urlencoded({extended:true, limit:'50mb'})); 
 //Logging
 app.use(logger("dev"));
 
