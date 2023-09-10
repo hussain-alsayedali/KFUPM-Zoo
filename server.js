@@ -40,9 +40,9 @@ app.set("view engine", "ejs");
 app.use(express.static('public'))
 
 //Body Parsing
-app.use(express.urlencoded({ extended: true ,limit: '10mb'}));
-app.use(express.json({limit: '10mb'}));
-app.use(express.bodyParser({limit: '10mb'}));
+app.use(express.urlencoded({ extended: true ,limit: '20mb'}));
+app.use(express.json({limit: '20mb'}));
+
 //Logging
 app.use(logger("dev"));
 
