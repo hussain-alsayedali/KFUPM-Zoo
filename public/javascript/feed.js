@@ -88,6 +88,7 @@ function addColorToCurrentType(){
     else if(currentType == "bird") currentContainer = document.getElementById("bird-container")
     else if(currentType == "oria") currentContainer = document.getElementById("oria-container")
     else if(currentType == "all")  currentContainer = document.getElementById("all-container")
+    else if(currentType == "cat")  currentContainer = document.getElementById("cat-container")
 
     currentContainer.classList.add("text-cyan-600")
     

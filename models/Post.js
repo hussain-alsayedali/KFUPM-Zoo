@@ -42,7 +42,7 @@ const PostSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ["fox", "bird", "duck" , "oria" ]
+    enum: ["fox", "bird", "duck" , "oria", "cat" ]
   }
 });
 
